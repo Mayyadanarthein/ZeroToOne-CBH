@@ -1,6 +1,6 @@
 **MoodMix: AI-Powered Music Experience**
 
-MoodMix is an innovative web application that leverages artificial intelligence to create personalized music experiences based on user emotions and random word inputs. Our platform aims to enhance mental well-being and social connection through the power of music.
+Sona is an innovative web application that leverages artificial intelligence to create personalized music experiences based on user emotions and random word inputs. Our platform aims to enhance mental well-being and social connection through the power of music.
 
 **🎵 Key Features**
 
@@ -12,7 +12,7 @@ Intuitive User Interface: A sleek, responsive design that works seamlessly acros
 
 **🚀 Technology Stack**
 
-Frontend: HTML5, CSS3, JavaScript (ES6+)
+Frontend: HTML, CSS, JavaScript
 AI Integration: [Specify AI service/API used]
 Responsive Design: Custom CSS with mobile-first approach
 Version Control: Git & GitHub
