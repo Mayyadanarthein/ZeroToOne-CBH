@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sona Project</title>
+    <title>Vibes - Sona Project</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
     <div class="logo">
-        <a href="index.html" class="active"> Sona</a>
+        <a href="index.html" class="active">Vibes</a>
     </div>
     <nav>
-
         <a href="playlist.html">Playlists</a>
         <a href="team.html">Meet The Team</a>
     </nav>
 </header>
 <main>
     <h1>Please type 3 random words</h1>
+    <form id="playlistform">
     <div class="input-container">
-        <input type="text" placeholder="Word 1">
-        <input type="text" placeholder="Word 2">
-        <input type="text" placeholder="Word 3">
+        <input type="text" placeholder="Word 1" id="word1" required>
+        <input type="text" placeholder="Word 2" id="word2" required>
+        <input type="text" placeholder="Word 3" id="word3" required>
     </div>
-    <button class="generate-btn">Generate your playlist</button>
+    <button id="generate-btn">Generate your playlist</button>
+</form>
     <div class="actions">
         <button id="joinRoom" class="action-btn">Join a random room</button>
         <button id="makeRoom" class="action-btn">Make a room</button>
@@ -33,7 +34,7 @@
     </div>
 </main>
 <footer>
-    <p>&copy; 2024 Sona. All rights reserved.</p>
+    <p>&copy; 2024 MoodMix. All rights reserved.</p>
 </footer>
 <div class="background-shapes">
     <div class="shape shape1"></div>
@@ -50,6 +51,45 @@
         <button id="closeRoom">Close</button>
     </div>
 </div>
-<script src="script.js"></script>
+<script>
+    let currentPlaylist = [];  // Ensure currentPlaylist is defined in the correct scope
+
+    document.getElementById('playlistform').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        document.getElementById('generate-btn').addEventListener('click', function(){
+            window.location.href = 'playlist.html';
+        });
+
+        const word1 = document.getElementById('word1').value;
+        const word2 = document.getElementById('word2').value;
+        const word3 = document.getElementById('word3').value;
+
+        try {
+            const response = await fetch("http://127.0.0.1:5600/api/generatePlaylist", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ word1, word2, word3 })
+            });
+
+            const data = await response.json();
+            const playlistDiv = document.getElementById('playlist');
+            playlistDiv.innerHTML = '';
+            currentPlaylist = data.playlist;  // Update currentPlaylist with the generated playlist
+
+            data.playlist.forEach(videoId => {
+                const videoLink = document.createElement('a');
+                videoLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+                videoLink.target = '_blank';
+                videoLink.textContent = `https://www.youtube.com/watch?v=${videoId}`;
+                playlistDiv.appendChild(videoLink);
+            });
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    });
+    </script>
 </body>
 </html>
