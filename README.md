@@ -1,4 +1,4 @@
-***MoodMix: AI-Powered Music Experience ***
+**MoodMix: AI-Powered Music Experience **
 
 MoodMix is an innovative web application that leverages artificial intelligence to create personalized music experiences based on user emotions and random word inputs. Our platform aims to enhance mental well-being and social connection through the power of music.
 
